@@ -1,15 +1,23 @@
 package com.social.media.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class SocialProfile {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
-    @OneToOne(mappedBy = "socialProfile")
-//  @JoinColumn(name="social user")
+
+    @OneToOne
+    @JoinColumn(name = "social_user_id")
+    @JsonIgnore
     public SocialUser user;
+
 }
