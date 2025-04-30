@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import java.util.*;
 
@@ -17,7 +18,7 @@ public class SocialUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
 //    @JoinColumn(name = "social_profile_id")
     public SocialProfile socialProfile;
 
@@ -31,6 +32,15 @@ public class SocialUser {
             inverseJoinColumns = @JoinColumn(name = "group_id")
     )
     public Set<SocilaGroup> socilaGroups=new HashSet<>();
+
+  public void setSocialProfile(SocialProfile socialProfile) {
+      socialProfile.setUser(this);
+        this.socialProfile = socialProfile;
+
+    }
+
+
+
 
 
 

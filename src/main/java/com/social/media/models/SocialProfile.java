@@ -20,4 +20,6 @@ public class SocialProfile {
     @JsonIgnore
     public SocialUser user;
 
+    public String discription;
+
 }
